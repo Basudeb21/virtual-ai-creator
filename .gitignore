@@ -1,0 +1,135 @@
+# -------------------------
+
+# Python
+
+# -------------------------
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Compiled files
+
+*.so
+*.pyd
+*.pyo
+
+# -------------------------
+
+# Virtual Environment
+
+# -------------------------
+
+.venv/
+venv/
+env/
+ENV/
+
+# -------------------------
+
+# Environment Variables
+
+# -------------------------
+
+.env
+.env.*
+*.env
+
+# -------------------------
+
+# Logs
+
+# -------------------------
+
+*.log
+logs/
+log/
+
+# -------------------------
+
+# Database
+
+# -------------------------
+
+*.sqlite3
+*.db
+*.db-journal
+
+# -------------------------
+
+# MacOS
+
+# -------------------------
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# -------------------------
+
+# IDE / Editors
+
+# -------------------------
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -------------------------
+
+# Python Testing
+
+# -------------------------
+
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# -------------------------
+
+# Build
+
+# -------------------------
+
+build/
+dist/
+*.egg-info/
+
+# -------------------------
+
+# Temporary Files
+
+# -------------------------
+
+tmp/
+temp/
+*.tmp
+
+# -------------------------
+
+# AI / LLM artifacts
+
+# -------------------------
+
+models/
+embeddings/
+vector_store/
+
+# -------------------------
+
+# Jupyter
+
+# -------------------------
+
+.ipynb_checkpoints
+
+# -------------------------
+
+# Worker / Queue temp
+
+# -------------------------
+
+worker_state/
+queue_state/
