@@ -133,3 +133,10 @@ vector_store/
 
 worker_state/
 queue_state/
+
+# venv folder for AI creator
+.virtual-ai-creator/
+
+
+# history files for AI creator
+.history/
