@@ -5,7 +5,7 @@ import sys
 # Add project root to Python path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(PROJECT_ROOT)
-from config import API_REGISTER_URL
+from config.platform_api import API_REGISTER_URL
 from database.ai_creator_schema import CreateAICreator
 from database.ai_creator_queries import insert_ai_creator_data
 
@@ -58,7 +58,7 @@ def create_ai_creator(ai_creator: CreateAICreator):
     user_data = result["data"]
 
     # Step 2: Insert AI creator data into the database
-    ai_id = insert_ai_creator_data(user_data)
+    ai_id = insert_ai_creator_data(ai_creator, user_data)
 
     return {
         "message": "AI creator created",
@@ -69,4 +69,4 @@ def create_ai_creator(ai_creator: CreateAICreator):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("create_ai_creator.ai_creator:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("api.create_virtual_ai_creator:app", host="0.0.0.0", port=8000, reload=True)

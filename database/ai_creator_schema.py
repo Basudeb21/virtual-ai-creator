@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Dict
+from datetime import date,time
 
 
 class CreateAICreator(BaseModel):
@@ -13,6 +14,8 @@ class CreateAICreator(BaseModel):
     email: str
     password: str
     confirm_password: str
+    birthdate: date
+    gender: str
 
     phone: str
     address: str
@@ -30,41 +33,33 @@ class CreateAICreator(BaseModel):
     youtube: str = ""
     website: str = ""
 
-    # AI creator body features
-    gender: str
-    ethnicity: str
+    # AI creators 
+    
     eye_color: str
     skin_tone: str
     hair_style: str
     hair_color: str
     body_type: str
-    age: int
     breast_size: str
     butt_size: str
 
-    # AI behaviour
-    niche: str
-    tone: str
-
-    posting_frequency: Dict
+    # AI creator behaviour
+    posting_frequency: int
     #active_hours: Dict
-    online_time: str
-    offline_time: str
+    online_time: time
+    offline_time: time
+    is_active: bool = True
     current_status: str
     admin_id: int
     personality_prompt: str
     backstory: str
     cooldown_time: int
 
-    avatar_style: str
-    content_themes: List[str]
-    personality_prompt: str
-
     # AI Creator Persona
     tone: str
     interests: List[str]
     speaking_style: str
     most_use_emojis: List[str]
+
+
     persona_traits: Dict[str, str] = {}
-    created_by_admin: str
-    is_active: bool = True
