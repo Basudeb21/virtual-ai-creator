@@ -1,12 +1,19 @@
+import uuid
+from database.database_connection import get_db_connection
+import pymysql
 import json
-from database.db import db
+
+# Function to insert AI creator data into the database
+def insert_ai_creator(data, user_data):
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
 
 
-def insert_ai_creator(data, user_data, cursor):
-
-    query = """
+    querry = """
     INSERT INTO ai_creators (
         user_id,
+        ethnicity,
+        age,
         eye_color,
         skin_tone,
         hair_style,
@@ -14,11 +21,13 @@ def insert_ai_creator(data, user_data, cursor):
         body_type,
         breast_size,
         butt_size
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    """
 
-    cursor.execute(query, (
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)    
+"""
+    cursor.execute(querry, (
         user_data['id'],
+        data.ethnicity,
+        data.age,
         data.eye_color,
         data.skin_tone,
         data.hair_style,
@@ -28,12 +37,21 @@ def insert_ai_creator(data, user_data, cursor):
         data.butt_size
     ))
 
+    conn.commit()
+    cursor.close()
+    conn.close()
 
-def insert_ai_creator_behaviour(data, user_data, cursor):
 
-    query = """
-    INSERT INTO ai_creator_behaviour (
+
+def insert_ai_creator_behaviour(data, user_data):
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+
+    querry = """
+    INSERT INTO ai_creator_behavior (
         user_id,
+        tone,
         posting_frequency,
         online_time,
         offline_time,
@@ -43,12 +61,12 @@ def insert_ai_creator_behaviour(data, user_data, cursor):
         personality_prompt,
         backstory,
         cooldown_time
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-
-    cursor.execute(query, (
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)    
+"""
+    cursor.execute(querry, (
         user_data['id'],
-        data.posting_frequency,
+        data.tone,
+        json.dumps(data.posting_frequency),
         data.online_time,
         data.offline_time,
         data.is_active,
@@ -59,20 +77,28 @@ def insert_ai_creator_behaviour(data, user_data, cursor):
         data.cooldown_time
     ))
 
+    conn.commit()
+    cursor.close()
+    conn.close()
 
-def insert_ai_creator_persona(data, user_data, cursor):
 
-    query = """
+
+
+def insert_ai_creator_persona(data, user_data):
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+
+    querry = """
     INSERT INTO ai_creator_persona (
         user_id,
         tone,
         interests,
         speaking_style,
-        most_used_emojis
-    ) VALUES (%s, %s, %s, %s, %s)
-    """
-
-    cursor.execute(query, (
+        most_use_emojis
+    ) VALUES (%s, %s, %s, %s, %s)    
+"""
+    cursor.execute(querry, (
         user_data['id'],
         data.tone,
         json.dumps(data.interests),
@@ -80,50 +106,40 @@ def insert_ai_creator_persona(data, user_data, cursor):
         json.dumps(data.most_use_emojis)
     ))
 
+    conn.commit()
+    cursor.close()
+    conn.close()
 
-def insert_ai_creator_traits(data, user_data, cursor):
 
-    query = """
+
+def insert_ai_creator_traits(data,user_data):
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+
+    querry = """
     INSERT INTO ai_creator_traits (
         user_id,
-        trait_key,
-        trait_value
-    ) VALUES (%s, %s, %s)
-    """
-
+       trait_key,
+       trait_value
+    ) VALUES (%s, %s, %s)    
+"""
     for key, value in data.persona_traits.items():
-        cursor.execute(query, (
+        cursor.execute(querry, (
             user_data['id'],
             key,
             value
         ))
 
+    conn.commit()
+    cursor.close()
+    conn.close()
+
 
 def insert_ai_creator_data(data, user_data):
-
-    conn = db.get_connection()
-    cursor = conn.cursor(dictionary=True)
-
-    try:
-
-        insert_ai_creator(data, user_data, cursor)
-        insert_ai_creator_behaviour(data, user_data, cursor)
-        insert_ai_creator_persona(data, user_data, cursor)
-        insert_ai_creator_traits(data, user_data, cursor)
-
-        conn.commit()
-
-        print("AI creator data inserted successfully for:", user_data['username'])
-
-        return user_data['id']
-
-    except Exception as e:
-
-        conn.rollback()
-        print("Error inserting AI creator:", str(e))
-        raise e
-
-    finally:
-
-        cursor.close()
-        conn.close()
+    insert_ai_creator(data, user_data)
+    insert_ai_creator_behaviour(data, user_data)
+    insert_ai_creator_persona(data, user_data)
+    insert_ai_creator_traits(data, user_data)
+    print("AI creator data inserted successfully for :", user_data['username'])
+    return user_data['id']

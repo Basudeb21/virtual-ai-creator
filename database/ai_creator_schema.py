@@ -26,12 +26,12 @@ class CreateAICreator(BaseModel):
     ssn: str
     categories: int
 
-    facebook: str = ""
-    instagram: str = ""
-    tiktok: str = ""
-    twitter: str = ""
-    youtube: str = ""
-    website: str = ""
+    # facebook: str = ""
+    # instagram: str = ""
+    # tiktok: str = ""
+    # twitter: str = ""
+    # youtube: str = ""
+    # website: str = ""
 
     # AI creators 
     

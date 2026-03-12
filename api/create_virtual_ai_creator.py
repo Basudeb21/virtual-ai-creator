@@ -30,12 +30,12 @@ def create_ai_creator(ai_creator: CreateAICreator):
         "zipcode": ai_creator.zipcode,
         "ssn": ai_creator.ssn,
         "categories": ai_creator.categories,
-        "facebook": ai_creator.facebook,
-        "instagram": ai_creator.instagram,
-        "tiktok": ai_creator.tiktok,
-        "twitter": ai_creator.twitter,
-        "youtube": ai_creator.youtube,
-        "website": ai_creator.website
+        # "facebook": ai_creator.facebook,
+        # "instagram": ai_creator.instagram,
+        # "tiktok": ai_creator.tiktok,
+        # "twitter": ai_creator.twitter,
+        # "youtube": ai_creator.youtube,
+        # "website": ai_creator.website
     }
 
     headers = {

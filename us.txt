@@ -1,0 +1,42 @@
+(.venv) niladittya21@Basudebs-Mac-mini virtual-ai-creator % python3 -m task.run_activity_worker
+DB_HOST: URL_IS_HIDE_BECAUSE_SECURITY
+2026-03-12 22:47:57,540 [ERROR] ❌ Failed to create MySQL pool: 2003 (HY000): Can't connect to MySQL server on 'URL_IS_HIDE_BECAUSE_SECURITY:3306' (60)
+Traceback (most recent call last):
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/connection_cext.py", line 354, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'URL_IS_HIDE_BECAUSE_SECURITY:3306' (60)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/task/run_activity_worker.py", line 2, in <module>
+    from workers.creator_activity_worker import run_worker
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/workers/creator_activity_worker.py", line 5, in <module>
+    from database.db import db
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/database/db.py", line 32, in <module>
+    pool = pooling.MySQLConnectionPool(
+        pool_name="ai_creator_pool",
+        pool_size=DB_POOL_SIZE,
+        **dbconfig
+    )
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/pooling.py", line 490, in __init__
+    self.add_connection()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/pooling.py", line 613, in add_connection
+    cnx = connect(**self._cnx_config)  # type: ignore[assignment]
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/connection_cext.py", line 142, in __init__
+    self.connect(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/abstracts.py", line 1604, in connect
+    self._open_connection()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/lib/python3.13/site-packages/mysql/connector/connection_cext.py", line 360, in _open_connection
+    raise get_mysql_exception(
+        err.errno, msg=err.msg, sqlstate=err.sqlstate
+    ) from err
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'URL_IS_HIDE_BECAUSE_SECURITY:3306' (60)
