@@ -9,17 +9,22 @@ from memory.active_creators import add_creator, remove_creator, get_all_creators
 
 def to_time(val):
     """
-    Converts MySQL TIME (which can come as timedelta) to datetime.time
+    Converts MySQL TIME (timedelta) or seconds (int/float) to datetime.time
     """
     if isinstance(val, time):
         return val
     elif isinstance(val, timedelta):
         total_seconds = val.total_seconds()
-        hours = int(total_seconds // 3600)
-        minutes = int((total_seconds % 3600) // 60)
-        seconds = int(total_seconds % 60)
-        return time(hour=hours, minute=minutes, second=seconds)
-    return None
+    elif isinstance(val, (int, float)):
+        total_seconds = float(val)
+    else:
+        return None
+
+    hours = int(total_seconds // 3600)
+    minutes = int((total_seconds % 3600) // 60)
+    seconds = int(total_seconds % 60)
+    return time(hour=hours, minute=minutes, second=seconds)
+
 
 def check_creators():
     query = """

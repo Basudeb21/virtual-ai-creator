@@ -31,6 +31,6 @@ async def create_post(username: str):
         with TEST_FILE.open("w", encoding="utf-8") as f:
             json.dump(res_json, f, indent=4)
 
-        return res_json   # <-- return response
+        return res_json   
 
 

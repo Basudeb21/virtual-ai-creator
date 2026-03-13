@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "message": "Message Sent!",
+    "data": {
+        "sender_id": 152,
+        "receiver_id": 27,
+        "delivery_status": "delivered",
+        "message": "Hey there! \ud83d\ude18 I'm from the beautiful city of Kolkata, India. It's a place full of life, culture, and love. And, of course, it's where I found my passion for chatting with amazing fans like you!",
+        "updated_at": "2026-03-13T22:09:02.000000Z",
+        "created_at": "2026-03-13T22:09:02.000000Z",
+        "id": 784
+    }
+}

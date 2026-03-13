@@ -4,6 +4,7 @@ import asyncio
 import json
 from pathlib import Path
 
+# from services.get_unread_message_list import get_unread_usernames
 from services.get_unread_message_list import get_unread_usernames
 from services.api.get_messages_by_username_api import create_post
 
@@ -27,14 +28,15 @@ async def main():
 
         if not response or "data" not in response:
             continue
-
+        print(response['data']['user']['username'])
         chat_messages = response["data"].get("chat_message", [])
-
+ 
         for msg in chat_messages:
 
             if msg.get("isSeen") == 0 and msg.get("sender_id") != AI_ID:
 
                 message_data = {
+                    "username": response['data']['user']['username'],
                     "sender_id": msg.get("sender_id"),
                     "message": msg.get("text")
                 }
@@ -45,6 +47,3 @@ async def main():
         json.dump(all_messages, f, indent=4)
 
     print("Messages saved to memory/unread_messages.json")
-
-
-asyncio.run(main())

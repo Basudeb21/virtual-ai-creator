@@ -1,0 +1,4 @@
+source /Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/bin/activate 
+
+python3 -m workers.run_activity_worker
+
