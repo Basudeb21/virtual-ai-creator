@@ -1,7 +1,7 @@
 {
     "success": true,
     "message": "Chat list",
-    "total_unread_conversations": 1,
+    "total_unread_conversations": 2,
     "data": [
         {
             "id": 105,
@@ -66,9 +66,9 @@
             "is_comment_blocked": 0,
             "recovery_token": null,
             "deleted_at": null,
-            "last_text": "ki ree kemon achis baea",
-            "last_text_time": "5 seconds ago",
-            "unread_msg_count": 1,
+            "last_text": "Hii how are you?",
+            "last_text_time": "7 seconds ago",
+            "unread_msg_count": 5,
             "is_unread": true,
             "country_code": "US",
             "badge": [
@@ -76,7 +76,7 @@
                     "id": 15,
                     "role_id": 3,
                     "name": "Platinum Tippers",
-                    "icon": "https://beta-admin.fliqzworld.com/img/badges/tippers-1.png?rand=1176580041",
+                    "icon": "https://beta-admin.fliqzworld.com/img/badges/tippers-1.png?rand=511709043",
                     "created_at": "28-07-2025 16:27:52",
                     "updated_at": "2025-07-28T16:27:52.000000Z"
                 }
@@ -155,10 +155,10 @@
             "is_comment_blocked": 0,
             "recovery_token": null,
             "deleted_at": null,
-            "last_text": "hi",
-            "last_text_time": "3 days ago",
-            "unread_msg_count": 0,
-            "is_unread": false,
+            "last_text": "basu loves komolika btw",
+            "last_text_time": "40 minutes ago",
+            "unread_msg_count": 2,
+            "is_unread": true,
             "country_code": "US",
             "badge": [],
             "follower_count": 16,
@@ -325,7 +325,7 @@
                     "id": 7,
                     "role_id": 2,
                     "name": "Fliqz Founder",
-                    "icon": "https://beta-admin.fliqzworld.com/img/badges/fliqz-founder.png?rand=1183234598",
+                    "icon": "https://beta-admin.fliqzworld.com/img/badges/fliqz-founder.png?rand=1348082290",
                     "created_at": "28-07-2025 16:27:52",
                     "updated_at": "2025-07-28T16:27:52.000000Z"
                 }

@@ -1,4 +1,4 @@
-from database.database_connection import get_db_connection
+from database.db import get_db_connection
 import pymysql
 
 

@@ -1,6 +1,6 @@
 BASE_URL = 'https://beta-admin.fliqzworld.com/api/'
 GET_ALL_MESSAGE = 'message'
-
+GET_MESSAGES_BY_USERNAME ='message/@{uid}/details'
 
 
 

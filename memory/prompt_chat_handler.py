@@ -52,6 +52,8 @@ def chat_with_creator(creator_id: int, user_id: int, user_message: str) -> str:
             input=full_prompt,
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="ignore",
             check=True
         )
         response = result.stdout.strip()

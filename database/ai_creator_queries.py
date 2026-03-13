@@ -5,7 +5,7 @@ from database.db import db
 def insert_ai_creator(data, user_data, cursor):
 
     query = """
-    INSERT INTO ai_creators (
+    INSERT INTO ai_creator_looks (
         user_id,
         eye_color,
         skin_tone,
@@ -32,7 +32,7 @@ def insert_ai_creator(data, user_data, cursor):
 def insert_ai_creator_behaviour(data, user_data, cursor):
 
     query = """
-    INSERT INTO ai_creator_behaviour (
+    INSERT INTO ai_creator_behavior (
         user_id,
         posting_frequency,
         online_time,
