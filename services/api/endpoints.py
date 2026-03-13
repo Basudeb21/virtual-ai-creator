@@ -1,11 +1,9 @@
 BASE_URL = 'https://beta-admin.fliqzworld.com/api/'
 GET_ALL_MESSAGE = 'message'
-<<<<<<< HEAD
 GET_MESSAGES_BY_USERNAME ='message/@{uid}/details'
-=======
 SEND_MESSAGE = 'message/{uid}/send-message'
 
->>>>>>> c6740be (Send sg api)
+
 
 
 
