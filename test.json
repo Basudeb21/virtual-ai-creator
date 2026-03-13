@@ -1,7 +1,7 @@
 {
     "success": true,
     "message": "Chat list",
-    "total_unread_conversations": 0,
+    "total_unread_conversations": 1,
     "data": [
         {
             "id": 105,
@@ -66,17 +66,17 @@
             "is_comment_blocked": 0,
             "recovery_token": null,
             "deleted_at": null,
-            "last_text": "Hey babe, I'm feeling awesome today! Let's make it an even better day together, shall we? \ud83d\ude09",
-            "last_text_time": "49 minutes ago",
-            "unread_msg_count": 0,
-            "is_unread": false,
+            "last_text": "ki ree kemon achis baea",
+            "last_text_time": "5 seconds ago",
+            "unread_msg_count": 1,
+            "is_unread": true,
             "country_code": "US",
             "badge": [
                 {
                     "id": 15,
                     "role_id": 3,
                     "name": "Platinum Tippers",
-                    "icon": "https://beta-admin.fliqzworld.com/img/badges/tippers-1.png?rand=2068147969",
+                    "icon": "https://beta-admin.fliqzworld.com/img/badges/tippers-1.png?rand=1176580041",
                     "created_at": "28-07-2025 16:27:52",
                     "updated_at": "2025-07-28T16:27:52.000000Z"
                 }
@@ -325,7 +325,7 @@
                     "id": 7,
                     "role_id": 2,
                     "name": "Fliqz Founder",
-                    "icon": "https://beta-admin.fliqzworld.com/img/badges/fliqz-founder.png?rand=691289688",
+                    "icon": "https://beta-admin.fliqzworld.com/img/badges/fliqz-founder.png?rand=1183234598",
                     "created_at": "28-07-2025 16:27:52",
                     "updated_at": "2025-07-28T16:27:52.000000Z"
                 }
