@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "message": "Message Sent!",
+    "data": {
+        "sender_id": 152,
+        "receiver_id": 165,
+        "delivery_status": "delivered",
+        "message": "Aww, my little French lover! \ud83d\udc8b Let's make our way to the Eiffel Tower and watch the sunset together while I whisper sweet nothings in your ear. \ud83d\ude18 Who knows where our adventurous night might take us next? \ud83d\ude09",
+        "updated_at": "2026-03-14T11:34:03.000000Z",
+        "created_at": "2026-03-14T11:34:03.000000Z",
+        "id": 893
+    }
+}

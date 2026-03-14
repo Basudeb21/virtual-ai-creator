@@ -1,3 +1,4 @@
+#workers/message_worker.py
 import asyncio
 import json
 from pathlib import Path
@@ -41,11 +42,24 @@ def is_creator_online():
 
 async def handle_messages():
     print("Starting Message Worker...")
-    while True:
-        # Step 1: Fetch unread messages from API
-        await fetch_unread()
 
-        # Step 2: Load messages from JSON
+    while True:
+
+        # Check if creator is online
+        if not is_creator_online():
+            print(f"Creator {AI_ID} is offline. Waiting...")
+            await asyncio.sleep(FETCH_INTERVAL)
+            continue
+
+        # Fetch unread messages
+        try:
+            await fetch_unread()
+        except Exception as e:
+            print("Fetch unread failed:", e)
+            await asyncio.sleep(FETCH_INTERVAL)
+            continue
+
+        # Load messages
         messages = await load_unread_messages()
 
         if not messages:
@@ -53,14 +67,8 @@ async def handle_messages():
             await asyncio.sleep(FETCH_INTERVAL)
             continue
 
-        # Step 3: Check if AI creator is active
-        if not is_creator_online():
-            print(f"Creator {AI_ID} is offline. Waiting...")
-            await asyncio.sleep(FETCH_INTERVAL)
-            continue
-
-        # Step 4: Process messages
-        for msg in messages[:]:  # use copy for safe removal
+        # Process messages
+        for msg in messages[:]:
             username = msg["username"]
             sender_id = msg["sender_id"]
             user_message = msg["message"]
@@ -70,22 +78,19 @@ async def handle_messages():
             print(f"User ID  : {sender_id}")
             print(f"Message  : {user_message}")
 
-            # Generate AI reply
             reply = chat_with_creator(
                 creator_id=AI_ID,
                 user_id=sender_id,
                 user_message=user_message
             )
+
             print("AI Reply :", reply)
 
-            # Send message
             response = await send_message_api(username, reply)
             print("API Response:", response)
 
-            # Remove message from JSON
             user_has_more_messages = remove_message(sender_id, user_message)
 
-            # Mark all as read if no more messages
             if not user_has_more_messages:
                 await create_post(sender_id)
                 print(f"Marked all messages from user {sender_id} as read")

@@ -35,30 +35,30 @@ def check_creators():
     creators = db.fetch_all(query)
     now = datetime.now().time()
 
+    active_creators = get_all_creators()
+
     for creator in creators:
-        user_id = creator["user_id"]
+        user_id = str(creator["user_id"])
+
         online = to_time(creator["online_time"])
         offline = to_time(creator["offline_time"])
 
         if not online or not offline:
             continue
 
-        # Case 1: online and offline on same day
         if online <= offline:
             is_active_now = online <= now <= offline
         else:
-            # Case 2: crosses midnight
             is_active_now = now >= online or now <= offline
 
-        if is_active_now:
-            if user_id not in get_all_creators():
-                data = load_creator(user_id)
-                add_creator(user_id, data)
-                print(f"[ONLINE] Creator {user_id} is now active")
-        else:
-            if user_id in get_all_creators():
-                remove_creator(user_id)
-                print(f"[OFFLINE] Creator {user_id} is now inactive")
+        if is_active_now and user_id not in active_creators:
+            data = load_creator(user_id)
+            add_creator(user_id, data)
+            print(f"[ONLINE] Creator {user_id} is now active")
+
+        elif not is_active_now and user_id in active_creators:
+            remove_creator(user_id)
+            print(f"[OFFLINE] Creator {user_id} is now inactive")
 
 def run_worker():
     print("Starting Creator Activity Worker...")
