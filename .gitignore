@@ -140,3 +140,10 @@ queue_state/
 
 # history files for AI creator
 .history/
+
+memory/messages.json
+memory/prompts.json
+memory/token.json
+memory/unread_messages.json
+memory/user_chat.json
+memory/user.json
