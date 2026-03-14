@@ -8,7 +8,7 @@ from memory.prompt_chat_handler import chat_with_creator
 
 INPUT_FILE = Path("memory/unread_messages.json")
 
-CREATOR_ID = 11
+CREATOR_ID = 152
 
 
 def main():

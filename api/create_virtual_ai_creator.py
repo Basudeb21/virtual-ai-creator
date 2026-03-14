@@ -63,3 +63,6 @@ def create_ai_creator(ai_creator: CreateAICreator):
         "username": user_data["username"],
     }
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("api.create_virtual_ai_creator:app", host="0.0.0.0", port=8000, reload=True)

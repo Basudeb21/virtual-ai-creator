@@ -3,11 +3,11 @@
     "message": "Message Sent!",
     "data": {
         "sender_id": 152,
-        "receiver_id": 27,
+        "receiver_id": 165,
         "delivery_status": "delivered",
-        "message": "Hey there! \ud83d\ude18 I'm from the beautiful city of Kolkata, India. It's a place full of life, culture, and love. And, of course, it's where I found my passion for chatting with amazing fans like you!",
-        "updated_at": "2026-03-13T22:09:02.000000Z",
-        "created_at": "2026-03-13T22:09:02.000000Z",
-        "id": 784
+        "message": "Sounds like we're both feeling the heat today! \ud83d\udd25\ud83c\udf36\ufe0f What movie are you watching to cool down, or should I suggest something fun for us to do together? \ud83c\udfac\ud83d\udc83",
+        "updated_at": "2026-03-14T06:14:22.000000Z",
+        "created_at": "2026-03-14T06:14:22.000000Z",
+        "id": 814
     }
 }
