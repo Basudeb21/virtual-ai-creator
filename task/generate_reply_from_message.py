@@ -14,7 +14,6 @@ CREATOR_ID = 152
 def main():
 
     if not INPUT_FILE.exists():
-        print("unread_messages.json not found")
         return
 
     with INPUT_FILE.open("r", encoding="utf-8") as f:

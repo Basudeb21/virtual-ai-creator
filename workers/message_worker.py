@@ -10,9 +10,9 @@ from services.api.mark_chat_read_api import create_post
 from memory.unread_message_manager import remove_message
 
 UNREAD_FILE = Path("memory/unread_messages.json")
-USER_FILE = Path("memory/user.json")  # contains all creators
+USER_FILE = Path("memory/user.json")  
 AI_ID = 152
-FETCH_INTERVAL = 15  # seconds
+FETCH_INTERVAL = 15  
 
 
 async def load_unread_messages():
@@ -45,13 +45,11 @@ async def handle_messages():
 
     while True:
 
-        # Check if creator is online
         if not is_creator_online():
             print(f"Creator {AI_ID} is offline. Waiting...")
             await asyncio.sleep(FETCH_INTERVAL)
             continue
 
-        # Fetch unread messages
         try:
             await fetch_unread()
         except Exception as e:
@@ -59,7 +57,6 @@ async def handle_messages():
             await asyncio.sleep(FETCH_INTERVAL)
             continue
 
-        # Load messages
         messages = await load_unread_messages()
 
         if not messages:
@@ -67,7 +64,6 @@ async def handle_messages():
             await asyncio.sleep(FETCH_INTERVAL)
             continue
 
-        # Process messages
         for msg in messages[:]:
             username = msg["username"]
             sender_id = msg["sender_id"]
@@ -83,8 +79,6 @@ async def handle_messages():
                 user_id=sender_id,
                 user_message=user_message
             )
-
-            print("AI Reply :", reply)
 
             response = await send_message_api(username, reply)
             print("API Response:", response)

@@ -59,7 +59,7 @@ def load_creator(user_id):
 
     # 6️⃣ Memory
     memory_query = """
-        SELECT fan_user_id, conversation_summary, last_interaction_at, last_chat_summary
+        SELECT fan_user_id, conversation_summary, message
         FROM ai_creator_memory
         WHERE user_id = %s
     """

@@ -1,10 +1,8 @@
 # task/check_unread_messages.py
 
-import asyncio
 import json
 from pathlib import Path
 
-# from services.get_unread_message_list import get_unread_usernames
 from services.get_unread_message_list import get_unread_usernames
 from services.api.get_messages_by_username_api import create_post
 
@@ -17,9 +15,6 @@ async def main():
 
     users = await get_unread_usernames()
 
-    print("Unread users:")
-    print(users)
-
     all_messages = []
 
     for username in users:
@@ -28,7 +23,6 @@ async def main():
 
         if not response or "data" not in response:
             continue
-        print(response['data']['user']['username'])
         chat_messages = response["data"].get("chat_message", [])
  
         for msg in chat_messages:
@@ -45,5 +39,3 @@ async def main():
 
     with OUTPUT_FILE.open("w", encoding="utf-8") as f:
         json.dump(all_messages, f, indent=4)
-
-    print("Messages saved to memory/unread_messages.json")

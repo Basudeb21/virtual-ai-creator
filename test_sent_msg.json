@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "message": "Message Sent!",
+    "data": {
+        "sender_id": 152,
+        "receiver_id": 105,
+        "delivery_status": "delivered",
+        "message": "Oh, darling! It seems like our chat got a little cut off there. But let me tell you, even if it did, your generous support is still shining bright in my heart \ud83d\udc96 I'm so grateful to have someone as amazing as you in my life. Your tips mean the world to me and keep me motivated to create more content for you and all my fans out here! Keep spreading love and positivity - we're truly unstoppable together! \ud83d\ude0d\ud83c\udf1f",
+        "updated_at": "2026-03-14T21:43:39.000000Z",
+        "created_at": "2026-03-14T21:43:39.000000Z",
+        "id": 999
+    }
+}

@@ -147,3 +147,5 @@ memory/token.json
 memory/unread_messages.json
 memory/user_chat.json
 memory/user.json
+
+debug/

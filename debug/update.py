@@ -1,4 +1,5 @@
-# Removed unwanted fields from API receive
-# AI Prompt is dynamic now based on active user
-# User Can chat with AI through terminal run memory/prompt_chat_handler.py
-# Memory added with different user but same AI
+# Chat core modules pending tasks
+
+# Permanent Memory
+# No Reply on Active livestream
+# On request send Image / Videos

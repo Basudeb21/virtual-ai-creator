@@ -3,7 +3,6 @@
 import json
 from pathlib import Path
 import subprocess
-
 PROMPTS_FILE = Path("memory/prompts.json")
 USER_CHAT_FILE = Path("memory/user_chat.json")
 
