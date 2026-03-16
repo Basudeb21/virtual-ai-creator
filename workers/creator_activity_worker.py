@@ -8,9 +8,6 @@ from memory.active_creators import add_creator, remove_creator, get_all_creators
 
 
 def to_time(val):
-    """
-    Converts MySQL TIME (timedelta) or seconds (int/float) to datetime.time
-    """
     if isinstance(val, time):
         return val
     elif isinstance(val, timedelta):
