@@ -12,7 +12,6 @@ def remove_message(sender_id, message):
     with UNREAD_FILE.open("r", encoding="utf-8") as f:
         messages = json.load(f)
 
-    # remove only the processed message
     updated_messages = [
         msg for msg in messages
         if not (
@@ -24,7 +23,6 @@ def remove_message(sender_id, message):
     with UNREAD_FILE.open("w", encoding="utf-8") as f:
         json.dump(updated_messages, f, indent=4)
 
-    # check if user still has messages
     user_has_messages = any(
         msg["sender_id"] == sender_id
         for msg in updated_messages

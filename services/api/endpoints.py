@@ -4,6 +4,7 @@ GET_MESSAGES_BY_USERNAME ='message/@{uid}/details'
 SEND_MESSAGE = 'message/@{uid}/send-message'
 MARK_AS_READ = 'message/mark-as-read'
 API_LOGIN = 'login'
+API_POST= 'post/add'
 
 
 

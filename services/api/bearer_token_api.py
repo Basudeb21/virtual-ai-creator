@@ -1,16 +1,14 @@
-# services/api/bearer_token_api.py
-
 import httpx
 from services.api.endpoints import BASE_URL, API_LOGIN
 from database.token_queries import save_token, get_token
 
 
-async def login_and_save_token(creator):
+def login_and_save_token(creator):
 
     login_url = BASE_URL + API_LOGIN
 
-    async with httpx.AsyncClient(timeout=20) as client:
-        res = await client.post(
+    with httpx.Client(timeout=20) as client:
+        res = client.post(
             login_url,
             json={
                 "email_username": creator["email"],
@@ -43,20 +41,18 @@ async def login_and_save_token(creator):
     return token, creator_id
 
 
-async def get_bearer_token(creator):
+def get_bearer_token(creator):
 
-    # If only creator_id is passed (e.g. 152)
     if isinstance(creator, int):
         creator_id = creator
         token = get_token(creator_id)
 
         if token:
             print(f"✅ Using cached token for creator {creator_id}")
-            return token, creator_id
+            return token
 
         raise Exception("Token not found in DB and login credentials not provided")
 
-    # If a creator dict is passed
     creator_id = creator.get("id") or creator.get("creator_id")
 
     if creator_id:
@@ -64,12 +60,12 @@ async def get_bearer_token(creator):
 
         if token:
             print(f"✅ Using cached token for creator {creator_id}")
-            return token, creator_id
+            return token
 
     print("⚠️ Token not found, logging in...")
 
-    token, creator_id = await login_and_save_token(creator)
+    token, creator_id = login_and_save_token(creator)
 
     creator["id"] = creator_id
 
-    return token, creator_id
+    return token

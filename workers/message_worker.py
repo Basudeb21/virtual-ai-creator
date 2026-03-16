@@ -26,7 +26,6 @@ async def load_unread_messages():
 
 
 def is_creator_online():
-    """Check if the AI creator is active from user.json"""
     if not USER_FILE.exists():
         return False
     with USER_FILE.open("r", encoding="utf-8") as f:
@@ -69,10 +68,11 @@ async def handle_messages():
             sender_id = msg["sender_id"]
             user_message = msg["message"]
 
-            print("\n-----------------------------")
+            print("\n******************************")
             print(f"Username : {username}")
             print(f"User ID  : {sender_id}")
             print(f"Message  : {user_message}")
+            print("******************************\n")
 
             reply = chat_with_creator(
                 creator_id=AI_ID,
