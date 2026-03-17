@@ -1,6 +1,11 @@
 source /Volumes/Niladittya/codex/fliqzworld/ai/virtual-ai-creator/.venv/bin/activate 
 
 python3 -m workers.run_activity_worker
+
 python3 -m workers.message_worker
 
+python3 -m workers.importance_worker
 
+python3 -m workers.memory_processor_worker
+
+python3 -m workers.db_worker
