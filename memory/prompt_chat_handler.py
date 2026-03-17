@@ -68,17 +68,3 @@ def chat_with_creator(creator_id: int, user_id: int, user_message: str) -> str:
     save_user_chats(user_chats)
 
     return response
-
-
-# Example usage
-if __name__ == "__main__":
-    creator_id = int(input("Enter AI ID :: "))
-    user_id = int(input("Enter User ID :: "))
-    user_message = ""
-    print("Type 'bye' to exit chat.\n")
-    while user_message.lower() != "bye":
-        user_message = input("User :: ")
-        if user_message.lower() == "bye":
-            break
-        answer = chat_with_creator(creator_id, user_id, user_message)
-        print("AI :: ", answer)

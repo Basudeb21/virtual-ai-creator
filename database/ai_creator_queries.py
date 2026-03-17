@@ -1,3 +1,4 @@
+# database/ai_creator_queries.py
 import json
 from database.db import db
 
@@ -125,5 +126,40 @@ def insert_ai_creator_data(data, user_data):
 
     finally:
 
+        cursor.close()
+        conn.close()
+
+def insert_memory(ai_id, fan_id, keyword_id, summary, importance_score):
+    conn = db.get_connection()
+    cursor = conn.cursor()
+
+    query = """
+    INSERT INTO ai_creator_memory (
+        ai_id,
+        fan_id,
+        keyword_id,
+        summary,
+        importance_score
+    ) VALUES (%s, %s, %s, %s, %s)
+    """
+
+    try:
+        cursor.execute(query, (
+            ai_id,
+            fan_id,
+            keyword_id,
+            summary,
+            importance_score
+        ))
+
+        conn.commit()
+        print("✅ Memory inserted:", keyword_id, summary)
+
+    except Exception as e:
+        conn.rollback()
+        print("❌ Memory insert failed:", str(e))
+        raise e
+
+    finally:
         cursor.close()
         conn.close()

@@ -1,6 +1,7 @@
-#workers/message_worker.py
+# workers/message_worker.py
 import asyncio
 import json
+import time
 from pathlib import Path
 
 from task.check_unread_messages import main as fetch_unread
@@ -8,6 +9,7 @@ from memory.prompt_chat_handler import chat_with_creator
 from services.api.send_message_api import send_message_api
 from services.api.mark_chat_read_api import create_post
 from memory.unread_message_manager import remove_message
+from queues.queue_manager import push_msg
 
 UNREAD_FILE = Path("memory/unread_messages.json")
 USER_FILE = Path("memory/user.json")  
@@ -23,7 +25,6 @@ async def load_unread_messages():
             return json.load(f)
         except json.JSONDecodeError:
             return []
-
 
 def is_creator_online():
     if not USER_FILE.exists():
@@ -73,6 +74,13 @@ async def handle_messages():
             print(f"User ID  : {sender_id}")
             print(f"Message  : {user_message}")
             print("******************************\n")
+
+            push_msg({
+                "ai_id": AI_ID,
+                "fan_id": sender_id,
+                "message": user_message,
+                "created_at": int(time.time())
+            })
 
             reply = chat_with_creator(
                 creator_id=AI_ID,

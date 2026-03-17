@@ -50,6 +50,11 @@ def check_creators():
 
         if is_active_now and user_id not in active_creators:
             data = load_creator(user_id)
+
+            if not data:
+                print(f"⚠️ Creator {user_id} data not found, skipping...")
+                continue
+
             add_creator(user_id, data)
             print(f"[ONLINE] Creator {user_id} is now active")
 
