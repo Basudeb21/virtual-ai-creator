@@ -14,11 +14,9 @@ def extract_json(text):
     match = re.search(r"\{.*\}", text, re.DOTALL)
     return match.group(0) if match else None
 
-
-KEYWORDS = load_keywords()
-
-
 def process_memory_llm(message: str):
+    KEYWORDS = load_keywords()
+    print('Local Keywords :: ', KEYWORDS)
     prompt = memory_processor_prompt(message, KEYWORDS)
 
     try:
@@ -49,12 +47,10 @@ def process_memory_llm(message: str):
             return None
 
         # ✅ FIX 1: validate tag
-        tag = data.get("tag", "preference_general")
-        if tag not in set(KEYWORDS):
-            print("⚠️ Invalid tag from LLM:", tag)
-            tag = "preference_general"
+        tag = data.get("keyword", "preference_general")
 
-        data["tag"] = tag
+        if tag not in set(KEYWORDS):
+            tag = "preference_general"  
 
         return data
 
@@ -78,6 +74,7 @@ async def run_worker():
         print("\nProcessing memory:", message)
 
         result = process_memory_llm(message)
+        print('DATA AFTER PROCESS :: ', result)
 
         if not result:
             print("❌ Failed to process memory")
@@ -85,7 +82,7 @@ async def run_worker():
 
         # ✅ FIX 2: spelling corrected
         job["summarise_chat"] = result.get("summary", "")
-        job["tag"] = result.get("tag", "preference_general")
+        job["keyword"] = result.get("keyword", "preference_general")
         job["importance_score"] = result.get("importance_score", 1)
 
         push_final(job)

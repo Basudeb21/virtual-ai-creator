@@ -23,12 +23,10 @@ def check_importance_llm(message: str) -> bool:
         output = result.stdout.strip()
         print("LLM Raw Output:", output)
 
-        # ✅ parse JSON
         data = json.loads(output)
         score = data.get("score", 0)
         important = data.get("important", False)
 
-        # Treat messages with score >= 3 as important
         return important or score >= 3
 
     except Exception as e:
@@ -39,6 +37,7 @@ async def run_worker():
 
     while True:
         job = pop_msg()
+        print('JOB :: ', job)
 
         if not job:
             await asyncio.sleep(2)

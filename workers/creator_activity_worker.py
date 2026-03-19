@@ -5,7 +5,7 @@ from datetime import datetime, time, timedelta
 from database.db import db
 from services.creator_loader import load_creator
 from memory.active_creators import add_creator, remove_creator, get_all_creators
-
+import json
 
 def to_time(val):
     if isinstance(val, time):
@@ -22,7 +22,14 @@ def to_time(val):
     seconds = int(total_seconds % 60)
     return time(hour=hours, minute=minutes, second=seconds)
 
+def get_keywords():
+    query = "SELECT keyword FROM keywords"
+    keywords = db.fetch_all(query) or []
+    keyword_list = [k["keyword"] for k in keywords]
+    with open("memory/keywords.json", "w") as f:
+        json.dump(keyword_list, f, indent=4)
 
+    
 def check_creators():
     query = """
         SELECT user_id, online_time, offline_time
@@ -64,6 +71,7 @@ def check_creators():
 
 def run_worker():
     print("Starting Creator Activity Worker...")
+    get_keywords()
     while True:
         try:
             check_creators()

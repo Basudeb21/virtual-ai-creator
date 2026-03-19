@@ -10,25 +10,25 @@ Your job is to extract structured memory from a user message.
 Message:
 "{message}"
 
-Available tags (STRICT):
+Available keywords (STRICT):
 [{keyword_list}]
 
 Instructions:
-- Choose ONLY ONE tag from the available tags
-- DO NOT create new tags
+- Choose ONLY ONE tag from the available keywords
+- DO NOT create new keywords
 - If nothing fits, use: preference_general
 
 Extract:
 
 1. summary (max 15 words)
-2. tag (must be from list)
+2. keyword (must be from list)
 3. importance_score (1 to 10)
 
 Return ONLY valid JSON:
 
 {{
   "summary": "...",
-  "tag": "...",
+  "keyword": "...",
   "importance_score": 0
 }}
 """

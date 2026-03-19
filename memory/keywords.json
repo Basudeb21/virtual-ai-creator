@@ -1,10 +1,18 @@
 [
-    "users_name",
-    "users_birthdate",
-    "favorite_food",
-    "favorite_movie",
+    "affection_need",
+    "attention_need",
+    "conversation_topic_preference",
+    "daily_habits",
+    "emoji_preference",
+    "emotional_tone",
+    "food_preference",
+    "formality_level",
+    "general_test",
+    "important_dates",
+    "jealousy_trigger",
+    "movie_preference",
+    "music_preference",
+    "preference_general",
     "relationship_status",
-    "location",
-    "habit",
-    "preference_general"
+    "response_style"
 ]
