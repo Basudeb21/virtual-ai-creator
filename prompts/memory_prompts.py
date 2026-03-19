@@ -22,8 +22,8 @@ Return ONLY a JSON object like this:
 }}
 
 Scoring Guidelines:
-5 → Very important (name, birthday, strong preference, relationship info)
-4 → Important (likes, dislikes, habits, personal info)
+5 → Very important (name, birthday, strong preference, relationship information)
+4 → Important (likes, dislikes, habits, personal information)
 3 → Somewhat useful (opinions, casual preferences)
 2 → Low value
 1 → Ignore (greetings, fillers)

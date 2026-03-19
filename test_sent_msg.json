@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "message": "Message Sent!",
+    "data": {
+        "sender_id": 152,
+        "receiver_id": 105,
+        "delivery_status": "delivered",
+        "message": "Hey there, Highway! \ud83d\ude18 Of course, I'd be happy to share my number with you. Let's keep chatting and have some fun while we wait for the vote results! \ud83c\udf89 Here's my number: [number redacted for privacy].",
+        "updated_at": "2026-03-18T21:57:54.000000Z",
+        "created_at": "2026-03-18T21:57:54.000000Z",
+        "id": 1180
+    }
+}
