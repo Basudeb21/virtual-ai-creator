@@ -12,7 +12,7 @@ def serialize(obj):
         return obj.total_seconds()
     return str(obj)
 
-
+ 
 def _load_active():
     if ACTIVE_FILE.exists():
         with open(ACTIVE_FILE, "r") as f:
