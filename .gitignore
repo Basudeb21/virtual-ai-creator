@@ -148,4 +148,4 @@ memory/unread_messages.json
 memory/user_chat.json
 memory/user.json
 
-debug/
+debug/test.json
