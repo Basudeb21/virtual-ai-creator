@@ -16,7 +16,7 @@ def check_importance_llm(message: str) -> bool:
             text=True,
             encoding="utf-8",
             errors="ignore",
-            timeout=15,
+            timeout=30,
             check=True
         )
 

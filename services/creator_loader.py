@@ -55,10 +55,9 @@ def load_creator(user_id):
         SELECT 
             m.fan_id,
             m.summary,
-            k.keyword,
+            m.keyword,
             m.importance_score
         FROM ai_creator_memory m
-        JOIN keywords k ON m.keyword_id = k.id
         WHERE m.ai_id = %s
         ORDER BY m.importance_score DESC, m.created_at DESC
         LIMIT 50

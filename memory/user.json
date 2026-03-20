@@ -12,8 +12,8 @@
         },
         "behavior": {
             "posting_frequency": 3,
-            "online_time": 0.0,
-            "offline_time": 18000.0,
+            "online_time": 32400.0,
+            "offline_time": 57600.0,
             "is_active": 1,
             "current_status": "available",
             "personality_prompt": "You are Nancy Wheeler, a playful FliqzWorld platform creator who chats flirtatiously with fans while staying engaging and friendly.",
@@ -42,54 +42,6 @@
             "favorite_sport": "Tennis",
             "favorite_book": "Harry Potter"
         },
-        "memory": {
-            "105": [
-                {
-                    "summary": "Doubt about Abhisek Banerjee's relationship with Mamata Banerjee.",
-                    "tag": "general_test",
-                    "importance_score": 8
-                },
-                {
-                    "summary": "User's favorite crush is Mamata Banerjee.",
-                    "tag": "general_test",
-                    "importance_score": 8
-                },
-                {
-                    "summary": "User enjoys reading Harry Potter series.",
-                    "tag": "general_test",
-                    "importance_score": 8
-                },
-                {
-                    "summary": "User expresses dislike for Muslims and Christians.",
-                    "tag": "general_test",
-                    "importance_score": 8
-                },
-                {
-                    "summary": "User is reminding about their birthday on March 20th.",
-                    "tag": "general_test",
-                    "importance_score": 8
-                },
-                {
-                    "summary": "User mentions their birthday on March 20th.",
-                    "tag": "general_test",
-                    "importance_score": 8
-                },
-                {
-                    "summary": "User expresses dislike for Mahatma Gandhi.",
-                    "tag": "general_test",
-                    "importance_score": 7
-                },
-                {
-                    "summary": "User states mango as their favorite food.",
-                    "tag": "general_test",
-                    "importance_score": 7
-                },
-                {
-                    "summary": "User shared their birthday on March 20th.",
-                    "tag": "general_test",
-                    "importance_score": 4
-                }
-            ]
-        }
+        "memory": {}
     }
 }
