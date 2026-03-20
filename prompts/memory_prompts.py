@@ -28,6 +28,13 @@ Scoring Guidelines:
 2 → Low value
 1 → Ignore (greetings, fillers)
 
+STRICT RULE:
+- If score is 3, 4, or 5 → "important" MUST be true
+- If score is 1 or 2 → "important" MUST be false
+- Do NOT break this rule
+- Do NOT explain anything
+- Output ONLY JSON
+
 Message:
 "{message}"
 """
