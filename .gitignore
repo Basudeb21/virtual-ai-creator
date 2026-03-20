@@ -149,3 +149,4 @@ memory/user_chat.json
 memory/user.json
 
 debug/test.json
+launch_workers.py
