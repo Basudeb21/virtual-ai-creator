@@ -17,7 +17,7 @@ async def run_worker():
 
         try:
             
-            # ✅ Insert memory using the proper keyword_id
+            # ✅ Insert memory using the proper keyword
             insert_memory(
                 ai_id=job.get("ai_id"),
                 fan_id=job.get("fan_id"),
