@@ -4,60 +4,35 @@ import httpx
 import json
 from pathlib import Path
 
-from services.api.endpoints import BASE_URL, SEND_MESSAGE, AUTH_TOKEN
+from services.api.endpoints import BASE_URL, SEND_MESSAGE  # ← REMOVE AUTH_TOKEN
 
 TEST_FILE = Path("debug/test_sent_msg.json")
 
 
-async def send_message_api(username, body=None, image_path=None):
+async def send_message_api(username, body, bearer_token):  # ← ADD PARAMETER
 
     url = BASE_URL + SEND_MESSAGE.format(uid=username)
 
     headers = {
-        "Authorization": f"Bearer {AUTH_TOKEN}",
-        # ❗ DO NOT set Content-Type manually
+        "Authorization": f"Bearer {bearer_token}",  # ← USE PARAMETER
+        "Content-Type": "application/json"
     }
 
     data = {
-        "price": "0"
+        "message": body
     }
 
     print("\n------ API DEBUG ------")
     print("URL:", url)
-    print("BODY:", body)
-    print("IMAGE:", image_path)
+    print("DATA:", data)
     print("-----------------------\n")
 
-    async with httpx.AsyncClient(timeout=60) as client:
-
-        # 🖼️ IMAGE MESSAGE
-        if image_path:
-            with open(image_path, "rb") as file:
-                files = {
-                    "attachment": (
-                        Path(image_path).name,
-                        file,
-                        "image/jpeg"
-                    )
-                }
-
-                response = await client.post(
-                    url=url,
-                    headers=headers,
-                    data=data,
-                    files=files
-                )
-
-        # 📝 TEXT MESSAGE
-        else:
-            if body:
-                data["message"] = body
-
-            response = await client.post(
-                url=url,
-                headers=headers,
-                data=data
-            )
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            url=url,
+            headers=headers,
+            json=data
+        )
 
         res_json = response.json()
 
