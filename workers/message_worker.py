@@ -10,92 +10,101 @@ from services.api.send_message_api import send_message_api
 from services.api.mark_chat_read_api import create_post
 from memory.unread_message_manager import remove_message
 from queues.queue_manager import push_msg
+from services.api.bearer_token_api import get_bearer_token 
 
 UNREAD_FILE = Path("memory/unread_messages.json")
 USER_FILE = Path("memory/user.json")  
-AI_ID = 152
-FETCH_INTERVAL = 15  
+FETCH_INTERVAL = 15 
 
 
-async def load_unread_messages():
+async def load_unread_messages(creator_id):
     if not UNREAD_FILE.exists():
         return []
     with UNREAD_FILE.open("r", encoding="utf-8") as f:
         try:
-            return json.load(f)
+            data = json.load(f)
+            # Filter messages for this creator
+            return [msg for msg in data if msg.get("creator_id") == creator_id]
         except json.JSONDecodeError:
             return []
 
-def is_creator_online():
+def get_all_online_creators():
     if not USER_FILE.exists():
-        return False
+        return {}
     with USER_FILE.open("r", encoding="utf-8") as f:
         try:
             users = json.load(f)
         except json.JSONDecodeError:
-            return False
-    creator = users.get(str(AI_ID))
-    if not creator:
-        return False
-    return creator.get("behavior", {}).get("is_active", 0) == 1
+            return {}
+    return {int(cid): data for cid, data in users.items() 
+            if data.get("behavior", {}).get("is_active", 0) == 1}
 
 
 async def handle_messages():
     print("Starting Message Worker...")
 
     while True:
+        online_creators = get_all_online_creators()
 
-        if not is_creator_online():
-            print(f"Creator {AI_ID} is offline. Waiting...")
+        if not online_creators:
+            print("No creators online. Waiting...")
             await asyncio.sleep(FETCH_INTERVAL)
             continue
 
-        try:
-            await fetch_unread()
-        except Exception as e:
-            print("Fetch unread failed:", e)
-            await asyncio.sleep(FETCH_INTERVAL)
-            continue
+        # Process each online creator
+        for creator_id, creator_data in online_creators.items():
+            try:
+                await fetch_unread(creator_id)  # ← PASS creator_id
+            except Exception as e:
+                print(f"Fetch unread failed for creator {creator_id}:", e)
+                continue
 
-        messages = await load_unread_messages()
+            messages = await load_unread_messages(creator_id)  # ← PASS creator_id
 
-        if not messages:
-            print("No unread messages")
-            await asyncio.sleep(FETCH_INTERVAL)
-            continue
+            if not messages:
+                print(f"No messages for creator {creator_id}")
+                continue
 
-        for msg in messages[:]:
-            username = msg["username"]
-            sender_id = msg["sender_id"]
-            user_message = msg["message"]
+            # Get bearer token for this creator
+            try:
+                token = get_bearer_token(creator_id)
+            except Exception as e:
+                print(f"Failed to get token for creator {creator_id}:", e)
+                continue
 
-            print("\n******************************")
-            print(f"Username : {username}")
-            print(f"User ID  : {sender_id}")
-            print(f"Message  : {user_message}")
-            print("******************************\n")
+            for msg in messages[:]:
+                username = msg["username"]
+                sender_id = msg["sender_id"]
+                user_message = msg["message"]
 
-            push_msg({
-                "ai_id": AI_ID,
-                "fan_id": sender_id,
-                "message": user_message,
-                "created_at": int(time.time())
-            })
+                print("\n******************************")
+                print(f"Creator ID: {creator_id}")
+                print(f"Username : {username}")
+                print(f"User ID  : {sender_id}")
+                print(f"Message  : {user_message}")
+                print("******************************\n")
 
-            reply = chat_with_creator(
-                creator_id=AI_ID,
-                user_id=sender_id,
-                user_message=user_message
-            )
+                push_msg({
+                    "ai_id": creator_id,  # ← USE LOOP creator_id
+                    "fan_id": sender_id,
+                    "message": user_message,
+                    "created_at": int(time.time())
+                })
 
-            response = await send_message_api(username, reply)
-            print("API Response:", response)
+                reply = chat_with_creator(
+                    creator_id=creator_id,  # ← USE LOOP creator_id
+                    user_id=sender_id,
+                    user_message=user_message
+                )
 
-            user_has_more_messages = remove_message(sender_id, user_message)
+                response = await send_message_api(username, reply, token)  # ← PASS token
+                print("API Response:", response)
 
-            if not user_has_more_messages:
-                await create_post(sender_id)
-                print(f"Marked all messages from user {sender_id} as read")
+                user_has_more_messages = remove_message(sender_id, user_message)
+
+                if not user_has_more_messages:
+                    await create_post(sender_id, token)  # ← PASS token
+                    print(f"Marked all messages from user {sender_id} as read")
 
         await asyncio.sleep(FETCH_INTERVAL)
 

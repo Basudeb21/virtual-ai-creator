@@ -40,7 +40,11 @@ def chat_with_creator(creator_id: int, user_id: int, user_message: str) -> str:
 
     # Always load latest chats from disk
     user_chats = load_user_chats()
-    chat_history = user_chats.get(str(user_id), [])
+    
+    # Ensure creator_id exists, then get/create user_id entry
+    user_chats.setdefault(str(creator_id), {})
+    chat_history = user_chats[str(creator_id)].setdefault(str(user_id), [])
+    
     context = "\n".join(chat_history)
 
     full_prompt = f"{prompt_text}\n\n{context}\nSubscriber: {user_message}\n\nCreator:"
@@ -62,7 +66,7 @@ def chat_with_creator(creator_id: int, user_id: int, user_message: str) -> str:
     # Update chat history
     chat_history.append(f"Subscriber: {user_message}")
     chat_history.append(f"Creator: {response}")
-    user_chats[str(user_id)] = chat_history[-20:]  
+    user_chats[str(creator_id)][str(user_id)] = chat_history[-20:]  
 
     # Save back to disk
     save_user_chats(user_chats)

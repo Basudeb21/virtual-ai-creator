@@ -5,9 +5,3 @@ SEND_MESSAGE = 'message/@{uid}/send-message'
 MARK_AS_READ = 'message/mark-as-read'
 API_LOGIN = 'login'
 API_POST= 'post/add'
-
-
-
-
-
-AUTH_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2JldGEtYWRtaW4uZmxpcXp3b3JsZC5jb20vYXBpL2xvZ2luIiwiaWF0IjoxNzczNDExMjU2LCJleHAiOjE3NzYwMDMyNTYsIm5iZiI6MTc3MzQxMTI1NiwianRpIjoieVZqTVVPa0xkZWJ1NEhoeCIsInN1YiI6IjE1MiIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEiLCJzZXRSZWZyZXNoVFRMIjoiNDMyMDAifQ.IT4ZoJw-s-kv1chpTmkNqYvqY8h2SBsbILyql5M9NrY'

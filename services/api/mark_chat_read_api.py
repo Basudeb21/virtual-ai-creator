@@ -2,17 +2,16 @@
 
 import httpx
 from pathlib import Path
-from services.api.endpoints import BASE_URL, MARK_AS_READ, AUTH_TOKEN
+from services.api.endpoints import BASE_URL, MARK_AS_READ  # ← REMOVE AUTH_TOKEN
 
-TEST_FILE = Path("test1.json")
+TEST_FILE = Path("debug/test1.json")
 
 
-async def create_post(user_id: str):
+async def create_post(user_id: str, bearer_token):  # ← ADD PARAMETER
     url = BASE_URL + MARK_AS_READ
 
-
     headers = {
-        "Authorization": f"Bearer {AUTH_TOKEN}",
+        "Authorization": f"Bearer {bearer_token}",  # ← USE PARAMETER
         "Content-Type": "application/json"
     }
 

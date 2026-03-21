@@ -4,17 +4,17 @@ import httpx
 import json
 from pathlib import Path
 
-from services.api.endpoints import BASE_URL, GET_ALL_MESSAGE, AUTH_TOKEN
+from services.api.endpoints import BASE_URL, GET_ALL_MESSAGE  # ← REMOVE AUTH_TOKEN
 
-TEST_FILE = Path("test.json")
+TEST_FILE = Path("debug/test.json")
 
 
-async def get_all_messages():
+async def get_all_messages(bearer_token):  # ← ADD PARAMETER
 
     url = BASE_URL + GET_ALL_MESSAGE
 
     headers = {
-        "Authorization": f"Bearer {AUTH_TOKEN}",
+        "Authorization": f"Bearer {bearer_token}",  # ← USE PARAMETER
         "Content-Type": "application/json"
     }
 
